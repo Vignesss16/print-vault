@@ -1,21 +1,18 @@
 /**
- * WhatsApp Integration Interactive Simulator (M-04 Secure Print Shop)
- *
- * Allows developers and evaluators to test incoming WhatsApp messages,
- * greetings, and direct attachment rejection without needing active Meta credentials.
+ * PrintVault WhatsApp Interaction Simulator
  *
  * Usage:
  *   npx tsx scripts/simulate-whatsapp.ts
  */
 
-import { processWhatsAppWebhook } from '../lib/whatsapp/message-handler';
-import { WhatsAppClient, mockSentMessages, clearMockSentMessages } from '../lib/whatsapp/client';
-import { getPrintShopAdapter } from '../lib/whatsapp/adapters';
-import { WhatsAppWebhookPayload } from '../lib/whatsapp/types';
+import { processWhatsAppWebhook } from '../src/lib/whatsapp/message-handler';
+import { WhatsAppClient, mockSentMessages, clearMockSentMessages } from '../src/lib/whatsapp/client';
+import { getPrintShopAdapter } from '../src/lib/whatsapp/adapters';
+import { WhatsAppWebhookPayload } from '../src/lib/whatsapp/types';
 
 async function runSimulation() {
   console.log('================================================================');
-  console.log('🤖 M-04 Secure Print Shop - WhatsApp Interaction Simulator');
+  console.log('🤖 PrintVault - WhatsApp Interaction Simulator');
   console.log('================================================================\n');
 
   clearMockSentMessages();
@@ -43,7 +40,7 @@ async function runSimulation() {
                   id: `sim_msg_${Date.now()}`,
                   timestamp: `${Math.floor(Date.now() / 1000)}`,
                   type: 'text',
-                  text: { body: 'Hi, I need some prints!' },
+                  text: { body: 'Hi, I need to print my documents!' },
                 },
               ],
             },
@@ -60,8 +57,8 @@ async function runSimulation() {
   console.log(mockSentMessages[mockSentMessages.length - 1].body);
   console.log('----------------------------------------------------------------\n');
 
-  // --- Scenario 2: Customer mistakenly attaches a PDF (e.g. Aadhaar / Bank Statement) ---
-  console.log(`📎 [Scenario 2] Customer sends direct document attachment (Aadhaar_Card.pdf):`);
+  // --- Scenario 2: Customer mistakenly attaches a PDF ---
+  console.log(`📎 [Scenario 2] Customer sends direct PDF attachment (Aadhaar_Card.pdf):`);
   const documentPayload: WhatsAppWebhookPayload = {
     object: 'whatsapp_business_account',
     entry: [
@@ -95,16 +92,10 @@ async function runSimulation() {
 
   const results2 = await processWhatsAppWebhook(documentPayload, { client, adapter });
   console.log('⚙️ Webhook Processing Result:', results2);
-  console.log('\n💬 WhatsApp Privacy Warning Reply Sent to Customer:');
+  console.log('\n💬 WhatsApp Privacy Alert Sent to Customer:');
   console.log('----------------------------------------------------------------');
   console.log(mockSentMessages[mockSentMessages.length - 1].body);
   console.log('----------------------------------------------------------------\n');
-
-  // --- Scenario 3: Duplicate webhook delivery (Idempotency test) ---
-  console.log(`🔁 [Scenario 3] Simulating Meta webhook retry of the same event:`);
-  const duplicateResults = await processWhatsAppWebhook(greetingPayload, { client, adapter });
-  console.log('⚙️ Duplicate Result:', duplicateResults);
-  console.log(`Total messages sent to user: ${mockSentMessages.length} (Expected: 2, no extra message sent)\n`);
 
   console.log('✅ Simulation completed successfully!');
 }

@@ -1,36 +1,37 @@
 {
-  "name": "secure-print-shop-whatsapp",
-  "version": "1.0.0",
-  "description": "Independent WhatsApp Business Cloud API Integration Module for M-04 Secure Print Shop",
-  "main": "index.js",
+  "name": "printvault",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "simulate": "tsx scripts/simulate-whatsapp.ts"
+    "lint": "eslint",
+    "simulate": "npx tsx scripts/simulate-whatsapp.ts"
   },
-  "keywords": [
-    "whatsapp",
-    "meta-cloud-api",
-    "secure-print-shop",
-    "nextjs",
-    "typescript"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "next": "^14.2.23",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@base-ui/react": "^1.9.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "@types/canvas-confetti": "^1.9.0",
+    "canvas-confetti": "^1.9.4",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.5.0",
+    "lucide-react": "^1.61.0",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "shadcn": "^4.22.1",
+    "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "@types/node": "^20.17.14",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "tsx": "^4.23.15",
-    "typescript": "^5.7.3",
-    "vitest": "^2.1.8"
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
