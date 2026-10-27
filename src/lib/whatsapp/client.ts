@@ -7,6 +7,7 @@ import {
 
 /**
  * Server-only WhatsApp Cloud API client.
+ * Standardizes on WHATSAPP_TOKEN, WHATSAPP_PHONE_NUMBER_ID, and WHATSAPP_GRAPH_API_VERSION.
  * Ensures credentials remain strictly on the server and provides phone normalization,
  * rate limiting, and safe mock mode support.
  */
@@ -115,7 +116,8 @@ export function clearMockSentMessages(): void {
 }
 
 /**
- * Resolves configuration from environment variables, supporting both PrintVault and standard naming conventions.
+ * Resolves configuration from environment variables.
+ * Standardizes on WHATSAPP_TOKEN as primary, with WHATSAPP_ACCESS_TOKEN as backward-compatible fallback.
  */
 export function getWhatsAppConfig(): WhatsAppConfig {
   const accessToken =
@@ -129,16 +131,17 @@ export function getWhatsAppConfig(): WhatsAppConfig {
     !accessToken;
 
   const appBaseUrl =
-    process.env.SECURE_UPLOAD_BASE_URL ||
-    (process.env.NEXT_PUBLIC_APP_URL ? `${process.env.NEXT_PUBLIC_APP_URL}/upload` : 'http://localhost:3000/upload');
+    process.env.PRINTVAULT_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    'https://print-vault-livid.vercel.app';
 
   return {
     accessToken,
     phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
-    verifyToken: process.env.WHATSAPP_VERIFY_TOKEN || 'printvault_verify_token_dev',
+    verifyToken: process.env.WHATSAPP_VERIFY_TOKEN || '',
     appSecret: process.env.WHATSAPP_APP_SECRET || '',
     graphApiVersion: process.env.WHATSAPP_GRAPH_API_VERSION || 'v22.0',
-    secureUploadBaseUrl: appBaseUrl,
+    secureUploadBaseUrl: `${appBaseUrl.replace(/\/$/, '')}/upload`,
     internalApiKey: process.env.PRINTVAULT_INTERNAL_SECRET || process.env.WHATSAPP_INTERNAL_API_KEY,
     mockMode: isMock,
   };
@@ -156,7 +159,7 @@ export class WhatsAppClient {
   }
 
   /**
-   * Sends a plain text message to a WhatsApp customer phone number.
+   * Sends a plain text message to a WhatsApp customer phone number via Meta Cloud API.
    */
   async sendTextMessage(
     to: string,
@@ -198,11 +201,12 @@ export class WhatsAppClient {
     // Live Meta Cloud API call
     if (!this.config.accessToken || !this.config.phoneNumberId) {
       throw new Error(
-        'WhatsApp Cloud API configuration error: Missing WHATSAPP_ACCESS_TOKEN (or WHATSAPP_TOKEN) or WHATSAPP_PHONE_NUMBER_ID.'
+        'WhatsApp Cloud API configuration error: Missing WHATSAPP_TOKEN or WHATSAPP_PHONE_NUMBER_ID.'
       );
     }
 
-    const url = `https://graph.facebook.com/${this.config.graphApiVersion}/${this.config.phoneNumberId}/messages`;
+    const version = this.config.graphApiVersion || 'v22.0';
+    const url = `https://graph.facebook.com/${version}/${this.config.phoneNumberId}/messages`;
 
     const payload = {
       messaging_product: 'whatsapp',
@@ -243,6 +247,7 @@ export class WhatsAppClient {
         mock: false,
       };
     } catch (error) {
+      // Never rethrow errors that expose the bearer token
       const sanitized = error instanceof Error ? error.message : 'Unknown network error';
       throw new Error(`Failed to send WhatsApp message to ${maskPhoneNumber(normalized.normalized)}: ${sanitized}`);
     }

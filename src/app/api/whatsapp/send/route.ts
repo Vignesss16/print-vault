@@ -6,33 +6,39 @@ import { defaultWhatsAppClient } from '@/lib/whatsapp/client';
  *
  * Protected endpoint for PrintVault services to send outbound WhatsApp messages
  * (e.g. "Document Received" or "Print Ready").
+ *
+ * Security: Requires X-Internal-Secret or Authorization Bearer header matching
+ * PRINTVAULT_INTERNAL_SECRET to prevent unauthenticated internet abuse.
  */
 export async function POST(request: NextRequest) {
-  const internalApiKey =
+  const internalSecret =
     process.env.PRINTVAULT_INTERNAL_SECRET || process.env.WHATSAPP_INTERNAL_API_KEY;
   const isMockMode = process.env.WHATSAPP_MOCK_MODE === 'true';
 
-  if (!isMockMode && !internalApiKey) {
+  if (!isMockMode && !internalSecret) {
     return NextResponse.json(
-      { error: 'Server misconfiguration: PRINTVAULT_INTERNAL_SECRET is not configured.' },
+      { error: 'Server misconfiguration: PRINTVAULT_INTERNAL_SECRET is not configured on the server.' },
       { status: 500 }
     );
   }
 
-  if (internalApiKey) {
+  if (internalSecret) {
+    const internalSecretHeader = request.headers.get('x-internal-secret');
     const authHeader = request.headers.get('authorization');
     const apiKeyHeader = request.headers.get('x-api-key');
 
     let providedToken: string | null = null;
-    if (authHeader?.startsWith('Bearer ')) {
+    if (internalSecretHeader) {
+      providedToken = internalSecretHeader.trim();
+    } else if (authHeader?.startsWith('Bearer ')) {
       providedToken = authHeader.substring(7).trim();
     } else if (apiKeyHeader) {
       providedToken = apiKeyHeader.trim();
     }
 
-    if (!providedToken || providedToken !== internalApiKey) {
+    if (!providedToken || providedToken !== internalSecret) {
       return NextResponse.json(
-        { error: 'Unauthorized: Valid API key or Bearer token is required.' },
+        { error: 'Unauthorized: Valid X-Internal-Secret or Bearer token is required.' },
         { status: 401 }
       );
     }
