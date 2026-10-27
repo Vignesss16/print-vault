@@ -11,6 +11,9 @@ out/
 coverage/
 tsconfig.tsbuildinfo
 
+# nested repositories
+Hackhive/
+
 # environment variables
 .env
 .env.local
