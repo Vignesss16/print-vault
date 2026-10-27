@@ -1,0 +1,36 @@
+{
+  "name": "secure-print-shop-whatsapp",
+  "version": "1.0.0",
+  "description": "Independent WhatsApp Business Cloud API Integration Module for M-04 Secure Print Shop",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "simulate": "tsx scripts/simulate-whatsapp.ts"
+  },
+  "keywords": [
+    "whatsapp",
+    "meta-cloud-api",
+    "secure-print-shop",
+    "nextjs",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^14.2.23",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.14",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}
