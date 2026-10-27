@@ -92,14 +92,20 @@
   body {
     background-color: #fbf9f5;
     color: #1b1c1a;
-    font-family: var(--font-sans), Inter, sans-serif;
+    font-family: var(--font-sans), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.011em;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading), "Plus Jakarta Sans", sans-serif;
+    letter-spacing: -0.022em;
   }
   code, pre, .font-mono {
     font-family: var(--font-mono), "JetBrains Mono", monospace;
+    letter-spacing: -0.01em;
   }
 }
 

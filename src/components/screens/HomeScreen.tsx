@@ -1,220 +1,280 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { usePrintVault } from '@/context/PrintVaultContext';
+import { NearbyXeroxMap } from '@/components/common/NearbyXeroxMap';
+import { mockShops } from '@/data/mockData';
 
 export const HomeScreen: React.FC = () => {
   const {
     activeJob,
     setCurrentScreen,
-    recentPrints,
-    viewReceipt,
     countdown,
     formatCountdown,
+    currentUser,
+    userLocation,
+    isFetchingLocation,
+    fetchUserLocation,
+    initiateChatWithShop,
   } = usePrintVault();
 
+  const customerName = currentUser?.name || 'Tanishq Mudaliyar';
+  const customerFirstName = customerName.split(' ')[0];
+
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full pb-8">
       {/* Greeting Banner */}
-      <div className="pt-2 pb-5 flex flex-col gap-1">
-        <h1 className="font-heading font-bold text-[28px] text-[#1b1c1a] tracking-tight leading-tight">
-          Good morning, Rohan
-        </h1>
-        <p className="font-sans text-[14px] text-[#454556]">
-          Ready to print ephemeral documents securely
+      <div className="pt-1 pb-4 flex flex-col gap-1">
+        <div className="flex items-center justify-between">
+          <h1 className="font-heading font-bold text-[24px] text-[#1b1c1a] tracking-tight leading-tight">
+            Hello, {customerFirstName}
+          </h1>
+          <span className="font-sans text-[11px] bg-[#e1e0ff] text-[#07006c] px-3 py-1 rounded-full font-medium">
+            Active
+          </span>
+        </div>
+        <p className="font-sans text-[13px] text-[#6b6760]">
+          Find nearby Xerox shops and send documents directly to print.
         </p>
       </div>
 
-      {/* Active Print Job Card (Hero) */}
-      {activeJob ? (
-        <section className="w-full relative overflow-hidden rounded-[24px] bg-[#e1e0ff] p-5 shadow-sm text-[#07006c] mb-6 border border-[#c0c1ff]/60 transition-all hover:shadow-md">
-          {/* Header pill status */}
-          <div className="flex items-center justify-between gap-2 mb-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 text-[#3d3bf3] shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#3d3bf3] animate-pulse"></span>
-              <span className="font-mono text-[11px] font-semibold tracking-wide">
-                1 active print job
-              </span>
+      {/* Featured WhatsApp Ordering Demo Card */}
+      <section className="w-full mb-5 rounded-2xl bg-gradient-to-r from-[#00a884] to-[#075e54] p-4 text-white shadow-md relative overflow-hidden">
+        <div className="flex items-start justify-between gap-3 relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-2xl shrink-0">
+              💬
             </div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 text-[#454556] font-mono text-[11px] shadow-xs">
-              <span className="material-symbols-outlined text-[15px] text-[#3d3bf3]">
-                timer
-              </span>
-              <span className="font-semibold text-[#1b1c1a]">
-                {formatCountdown(countdown)} left
-              </span>
-            </div>
-          </div>
-
-          {/* Document File details */}
-          <div className="flex items-start gap-3.5 mb-5">
-            <div className="w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-[#3d3bf3] shadow-xs shrink-0">
-              <span className="material-symbols-outlined text-[24px]">description</span>
-            </div>
-            <div className="flex flex-col min-w-0 pr-1">
-              <span className="font-heading font-semibold text-[17px] text-[#07006c] truncate">
-                {activeJob.fileName}
-              </span>
-              <div className="flex items-center gap-1.5 text-[#454556] mt-0.5">
-                <span className="material-symbols-outlined text-[15px] shrink-0 text-[#3d3bf3]">
-                  storefront
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="font-heading font-bold text-[15px] text-white tracking-tight">
+                  Sai Xerox WhatsApp Demo
                 </span>
-                <span className="font-sans text-[13px] truncate">
-                  {activeJob.shop.name}
+                <span className="text-[9px] bg-amber-300 text-black px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">
+                  Simulation
                 </span>
               </div>
+              <p className="font-sans text-[12px] text-emerald-100 mt-0.5">
+                Order prints directly through WhatsApp with Zero Data Leakage.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-3 pt-3 border-t border-white/20 flex items-center justify-between relative z-10">
+          <span className="text-[11px] text-emerald-100 flex items-center gap-1">
+            <span>🛡️</span>
+            <span>No files sent over chat</span>
+          </span>
+          <Link
+            href="/demo/whatsapp"
+            className="px-4 py-1.5 rounded-xl bg-white text-[#075e54] font-heading font-bold text-[12px] hover:bg-emerald-50 active:scale-95 transition-all shadow-xs inline-flex items-center gap-1.5"
+          >
+            <span>Try WhatsApp Demo</span>
+            <span>→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Active Print Job Banner (If active) */}
+      {activeJob && (
+        <section className="w-full relative overflow-hidden rounded-2xl bg-[#e1e0ff]/70 p-4 shadow-xs text-[#07006c] mb-6 border border-[#c0c1ff]">
+          <div className="flex items-center justify-between gap-2 mb-3">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white text-[#3d3bf3] text-[11px] font-medium shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#3d3bf3] animate-pulse"></span>
+              <span>1 active print job</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white text-[#1b1c1a] text-[11px] font-medium shadow-xs">
+              <span className="material-symbols-outlined text-[14px] text-[#3d3bf3]">timer</span>
+              <span>{formatCountdown(countdown)} left</span>
             </div>
           </div>
 
-          {/* Token & Self-destruct specs container */}
-          <div className="bg-white/75 backdrop-blur-xs rounded-2xl p-3.5 mb-4 flex items-center justify-between border border-white/50">
-            <div className="flex flex-col">
-              <span className="font-sans text-[11px] text-[#454556] uppercase tracking-wider font-medium">
-                One-Time Token
+          <div className="flex items-start gap-3 mb-3">
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#3d3bf3] shadow-xs shrink-0">
+              <span className="material-symbols-outlined text-[22px]">description</span>
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="font-heading font-semibold text-[15px] text-[#07006c] truncate">
+                {activeJob.fileName}
               </span>
-              <span className="font-mono text-[19px] text-[#3d3bf3] tracking-widest font-bold">
+              <span className="font-sans text-[12px] text-[#454556] truncate">
+                {activeJob.shop.name}
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-white/80 rounded-xl p-3 flex items-center justify-between border border-white">
+            <div>
+              <span className="font-sans text-[10px] text-[#6b6760] uppercase tracking-wide font-medium block">
+                Pickup PIN
+              </span>
+              <span className="font-mono text-[17px] text-[#3d3bf3] font-bold tracking-wider">
                 {activeJob.token}
               </span>
-            </div>
-            <div className="h-8 w-px bg-[#c6c4d9]/50"></div>
-            <div className="flex flex-col items-end">
-              <span className="font-sans text-[11px] text-[#454556] uppercase tracking-wider font-medium">
-                Self-Destruct
-              </span>
-              <span className="font-mono text-[12px] text-[#1b1c1a] font-semibold flex items-center gap-1 mt-0.5">
-                <span className="material-symbols-outlined text-[14px] text-[#3d3bf3]">
-                  lock_clock
-                </span>
-                Post-render shred
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom Card Controls */}
-          <div className="flex items-center justify-between pt-1">
-            <div className="flex items-center gap-1.5 text-[#454556]">
-              <span className="material-symbols-outlined text-[16px] text-emerald-700">
-                verified_user
-              </span>
-              <span className="font-sans text-[12px] font-medium">Zero-store vault</span>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrentScreen('shop_qr')}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/70 text-[#1b1c1a] font-sans text-[13px] font-medium shadow-xs hover:bg-white active:scale-95 transition-all"
+                className="px-3 py-1.5 rounded-lg bg-white text-[#1b1c1a] font-sans text-[12px] font-medium border border-[#ece8e1] hover:bg-[#fbf9f5] cursor-pointer"
                 type="button"
-                title="View QR Code"
               >
-                <span className="material-symbols-outlined text-[16px]">qr_code_2</span>
-                <span>QR</span>
+                QR Code
               </button>
               <button
                 onClick={() => setCurrentScreen('live_tracker')}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-[#1b1c1a] font-sans text-[13px] font-semibold shadow-xs hover:bg-[#fbf9f5] active:scale-95 transition-all"
+                className="px-3 py-1.5 rounded-lg bg-[#3d3bf3] text-white font-sans text-[12px] font-medium hover:bg-[#2e2cd4] cursor-pointer shadow-xs"
                 type="button"
               >
-                <span>Track live</span>
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                Status
               </button>
             </div>
           </div>
         </section>
-      ) : (
-        <section className="w-full rounded-[24px] bg-white p-6 shadow-sm border border-[#ece8e1] mb-6 text-center">
-          <div className="w-12 h-12 rounded-full bg-[#f5f3ef] text-[#3d3bf3] flex items-center justify-center mx-auto mb-3">
-            <span className="material-symbols-outlined text-[24px]">verified</span>
+      )}
+
+      {/* Find Location & Map */}
+      {!userLocation ? (
+        <section className="w-full rounded-2xl bg-gradient-to-b from-white to-[#fbf9f5] p-6 shadow-xs border border-[#ece8e1] mb-6 text-center space-y-4">
+          <div className="w-14 h-14 rounded-2xl bg-[#e1e0ff] text-[#3d3bf3] flex items-center justify-center mx-auto">
+            <span className="material-symbols-outlined text-[28px]">
+              near_me
+            </span>
           </div>
-          <h3 className="font-heading font-semibold text-[17px] text-[#1b1c1a]">
-            Vault is Idle & Purged
-          </h3>
-          <p className="font-sans text-[13px] text-[#454556] mt-1 max-w-[280px] mx-auto">
-            All previous ephemeral jobs have been safely erased. Ready to prepare your next secure print job.
+
+          <div className="max-w-[340px] mx-auto space-y-1.5">
+            <h3 className="font-heading font-semibold text-[18px] text-[#1b1c1a] tracking-tight">
+              Find Xerox Shops Near You
+            </h3>
+            <p className="font-sans text-[13px] text-[#6b6760] leading-relaxed">
+              Locate certified print shops in your area, view live pricing, and send documents directly.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={fetchUserLocation}
+            disabled={isFetchingLocation}
+            className="w-full h-12 rounded-xl bg-[#3d3bf3] hover:bg-[#2e2cd4] text-white font-sans text-[14px] font-semibold flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer disabled:opacity-75"
+          >
+            {isFetchingLocation ? (
+              <>
+                <span className="material-symbols-outlined text-[18px] animate-spin">sync</span>
+                <span>Locating shops nearby...</span>
+              </>
+            ) : (
+              <>
+                <span className="material-symbols-outlined text-[18px]">location_on</span>
+                <span>Find Nearby Shops</span>
+              </>
+            )}
+          </button>
+
+          <p className="font-sans text-[11px] text-[#8a8780]">
+            Your location is only used to show nearby stores.
           </p>
+        </section>
+      ) : (
+        <section className="w-full mb-6 space-y-3">
+          <div className="flex items-center justify-between px-1">
+            <div>
+              <h2 className="font-heading font-semibold text-[17px] text-[#1b1c1a] tracking-tight">
+                Nearby Print Shops
+              </h2>
+              <p className="font-sans text-[12px] text-[#6b6760]">
+                Select a store to connect and send your print file
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={fetchUserLocation}
+              disabled={isFetchingLocation}
+              className="px-3 py-1.5 rounded-full bg-white hover:bg-[#f5f3ef] border border-[#ece8e1] text-[#3d3bf3] font-sans text-[11px] font-medium flex items-center gap-1 shadow-2xs cursor-pointer disabled:opacity-50"
+            >
+              <span className={`material-symbols-outlined text-[14px] ${isFetchingLocation ? 'animate-spin' : ''}`}>
+                sync
+              </span>
+              <span>Update</span>
+            </button>
+          </div>
+
+          <NearbyXeroxMap />
         </section>
       )}
 
-      {/* Main CTA: New Secure Print */}
-      <div className="w-full mb-8">
-        <button
-          onClick={() => setCurrentScreen('new_job')}
-          className="w-full h-[52px] rounded-full bg-[#3d3bf3] text-white font-sans text-[16px] font-semibold flex items-center justify-center gap-2 shadow-md shadow-[#3d3bf3]/25 hover:bg-[#2e2cd4] active:scale-[0.98] transition-all"
-          type="button"
-        >
-          <span className="material-symbols-outlined text-[22px]">add</span>
-          <span>New secure print</span>
-        </button>
-      </div>
-
-      {/* Recent Prints Section */}
-      <section className="w-full flex flex-col gap-3">
-        <div className="flex items-center justify-between px-0.5">
-          <h2 className="font-heading font-semibold text-[18px] text-[#1b1c1a] tracking-tight">
-            Recent prints
+      {/* Stores List */}
+      <section className="w-full space-y-3">
+        <div className="flex items-center justify-between px-1">
+          <h2 className="font-heading font-semibold text-[17px] text-[#1b1c1a] tracking-tight">
+            Print Shops ({mockShops.length})
           </h2>
-          <span className="font-sans text-[12px] text-[#454556]">
-            Archived receipts
+          <span className="font-sans text-[11px] text-[#3d3bf3] font-medium bg-[#e1e0ff] px-2.5 py-0.5 rounded-full">
+            Within 1 km
           </span>
         </div>
 
-        <div className="flex flex-col gap-3">
-          {recentPrints.map((item) => (
+        <div className="space-y-3">
+          {mockShops.map((shop) => (
             <div
-              key={item.id}
-              onClick={() => viewReceipt(item)}
-              role="button"
-              tabIndex={0}
-              className="w-full p-4 rounded-[20px] bg-white shadow-sm border border-[#ece8e1] flex items-center justify-between gap-3 transition-all hover:border-[#3d3bf3]/40 hover:shadow active:scale-[0.99] cursor-pointer"
+              key={shop.id}
+              className="p-4 rounded-2xl bg-white border border-[#ece8e1] shadow-2xs hover:border-[#3d3bf3]/40 transition-all"
             >
-              <div className="flex items-center gap-3.5 min-w-0">
-                <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                    item.status === 'Done'
-                      ? 'bg-[#ddf5e6] text-[#174e2b]'
-                      : 'bg-[#f5f3ef] text-[#454556]'
-                  }`}
-                >
-                  <span className="material-symbols-outlined text-[20px]">
-                    {item.status === 'Done' ? 'task_alt' : 'lock'}
-                  </span>
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-sans text-[14px] font-semibold text-[#1b1c1a] truncate">
-                    {item.fileName}
-                  </span>
-                  <span className="font-sans text-[12px] text-[#454556] truncate">
-                    {item.shopName} · {item.timestamp}
-                  </span>
-                </div>
-              </div>
+              <div className="flex items-start gap-3.5">
+                <img
+                  src={shop.image}
+                  alt={shop.name}
+                  className="w-13 h-13 rounded-xl object-cover shrink-0 border border-[#ece8e1]"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <h3 className="font-heading font-semibold text-[14px] text-[#1b1c1a] truncate">
+                      {shop.name}
+                    </h3>
+                    <span className="font-sans text-[11px] font-medium text-[#1e0cde] bg-[#e1e0ff] px-2 py-0.5 rounded-md shrink-0">
+                      {shop.distance}
+                    </span>
+                  </div>
 
-              <div className="shrink-0 flex items-center gap-1.5">
-                <span
-                  className={`inline-flex items-center px-3 py-1 rounded-full font-mono text-[11px] font-semibold ${
-                    item.status === 'Done'
-                      ? 'bg-[#ddf5e6] text-[#174e2b]'
-                      : 'bg-[#e1dee8] text-[#63626a]'
-                  }`}
-                >
-                  {item.status}
-                </span>
-                <span className="material-symbols-outlined text-[16px] text-[#767588]">
-                  chevron_right
-                </span>
+                  <p className="font-sans text-[12px] text-[#6b6760] truncate mt-0.5">
+                    {shop.operatorName} • {shop.location}
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <span className="inline-flex items-center gap-0.5 bg-[#fbf9f5] px-2 py-0.5 rounded-md text-[11px] font-semibold text-[#1b1c1a] border border-[#ece8e1]">
+                      <span className="material-symbols-outlined text-[#e5a000] text-[13px]">star</span>
+                      {shop.rating}
+                    </span>
+
+                    <span className="font-sans text-[11px] text-[#0a542a] bg-[#ddf5e6] px-2 py-0.5 rounded-md font-medium">
+                      ₹{shop.pricePerBw || 2}/page B&amp;W
+                    </span>
+
+                    <span className="font-sans text-[11px] text-[#454556] bg-[#f5f3ef] px-2 py-0.5 rounded-md">
+                      {shop.statusBadge}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 pt-3 border-t border-[#ece8e1] flex items-center justify-between">
+                    <span className="font-sans text-[11px] text-[#8a8780]">
+                      {shop.printerModel?.split(' ')[0] || 'Canon'} Laser Printer
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => initiateChatWithShop(shop)}
+                      className="px-3.5 py-1.5 rounded-xl bg-[#3d3bf3] hover:bg-[#2e2cd4] text-white font-sans text-[12px] font-semibold flex items-center gap-1.5 shadow-2xs active:scale-95 transition-all cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[15px]">chat</span>
+                      <span>Chat &amp; Print</span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
-
-      {/* Ephemeral Trust Footnote */}
-      <div className="mt-8 mb-4 flex items-center justify-center gap-2 text-[#454556]/80">
-        <span className="material-symbols-outlined text-[16px] text-emerald-600">
-          verified
-        </span>
-        <span className="font-mono text-[11px] text-center">
-          End-to-end encrypted · Auto memory wipe
-        </span>
-      </div>
     </div>
   );
 };

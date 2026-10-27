@@ -24,9 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PrintVault — Zero-Store Ephemeral Document Printing",
+  title: "PrintVault — Instant Xerox Printing",
   description:
-    "End-to-end encrypted, zero-footprint physical document printing with self-destruct tokens and verified purge receipts.",
+    "Find nearby print shops, connect directly with operators, and print documents securely.",
   icons: {
     icon: "/favicon.ico",
   },

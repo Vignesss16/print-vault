@@ -17,26 +17,20 @@ export const BottomNav: React.FC = () => {
   const navItems = [
     {
       id: 'home' as ScreenType,
-      label: 'Home',
-      icon: 'shield_with_house',
+      label: 'Shops',
+      icon: 'storefront',
       isActive: currentScreen === 'home',
     },
     {
-      id: 'live_tracker' as ScreenType,
-      label: 'Jobs',
-      icon: 'inventory_2',
-      isActive: currentScreen === 'live_tracker' || currentScreen === 'shop_qr',
-    },
-    {
-      id: 'receipts_list' as ScreenType,
-      label: 'Receipts',
-      icon: 'receipt_long',
-      isActive: currentScreen === 'receipt' || currentScreen === 'receipts_list',
+      id: 'chat' as ScreenType,
+      label: 'Chat',
+      icon: 'chat',
+      isActive: currentScreen === 'chat',
     },
     {
       id: 'profile' as ScreenType,
       label: 'Profile',
-      icon: 'fingerprint',
+      icon: 'person',
       isActive: currentScreen === 'profile',
     },
   ];

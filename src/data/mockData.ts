@@ -1,9 +1,30 @@
 import { PrintShop, PrintJob, RecentPrintItem } from '@/types/printvault';
 
+export const saiXeroxShop: PrintShop = {
+  id: 'shop-sai-xerox',
+  name: 'Sai Xerox',
+  distance: '50m away',
+  location: 'College Main Gate, Bengaluru',
+  rating: 4.9,
+  jobsCount: '620+ jobs today',
+  statusBadge: 'Fast queue',
+  image:
+    'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=300&q=80',
+  lat: 12.9716,
+  lng: 77.5946,
+  operatorName: 'Suresh Kumar',
+  pricePerBw: 2.0,
+  pricePerColor: 10.0,
+  printerModel: 'Canon imageRUNNER ADVANCE C5560i (PrintVault Enclave)',
+  phone: '+91 98450 99881',
+  isOnline: true,
+};
+
 export const mockShops: PrintShop[] = [
+  saiXeroxShop,
   {
     id: 'shop-1',
-    name: 'QuickPrint Corner',
+    name: 'QuickPrint Corner & Xerox',
     distance: '120m away',
     location: 'Station Road, MG Road',
     rating: 4.9,
@@ -11,28 +32,71 @@ export const mockShops: PrintShop[] = [
     statusBadge: 'Ready to pick',
     image:
       'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=300&q=80',
+    lat: 12.9723,
+    lng: 77.5952,
+    operatorName: 'Mohan Kumar',
+    pricePerBw: 2.0,
+    pricePerColor: 5.0,
+    printerModel: 'Canon imageRUNNER ADVANCE C5560i',
+    phone: '+91 98450 12345',
+    isOnline: true,
   },
   {
     id: 'shop-2',
-    name: 'CyberPoint Print Lab',
-    distance: '450m away',
-    location: 'Tech Hub Block C',
+    name: 'CyberPoint Print Lab & Xerox',
+    distance: '350m away',
+    location: 'Tech Hub Block C, Church Street',
     rating: 4.8,
     jobsCount: '180+ jobs',
     statusBadge: 'Low queue',
     image:
       'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80',
+    lat: 12.9741,
+    lng: 77.5978,
+    operatorName: 'Priya Suresh',
+    pricePerBw: 2.5,
+    pricePerColor: 6.0,
+    printerModel: 'HP PageWide Enterprise Color 586',
+    phone: '+91 98451 67890',
+    isOnline: true,
   },
   {
     id: 'shop-3',
     name: 'Metro Xerox & Docs Hub',
-    distance: '850m away',
-    location: 'Near Metro Gate 2',
+    distance: '500m away',
+    location: 'Near Metro Gate 2, MG Road',
     rating: 4.7,
     jobsCount: '520+ jobs',
     statusBadge: 'Fast queue',
     image:
       'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=300&q=80',
+    lat: 12.9698,
+    lng: 77.5932,
+    operatorName: 'Ramesh Gupta',
+    pricePerBw: 1.5,
+    pricePerColor: 4.0,
+    printerModel: 'Ricoh Pro 8300S High-Speed B&W',
+    phone: '+91 98452 98765',
+    isOnline: true,
+  },
+  {
+    id: 'shop-4',
+    name: 'Sri Ganesh Xerox & Lamination',
+    distance: '850m away',
+    location: 'Brigade Road Junction',
+    rating: 4.9,
+    jobsCount: '410+ jobs',
+    statusBadge: 'Open now',
+    image:
+      'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=300&q=80',
+    lat: 12.9702,
+    lng: 77.6015,
+    operatorName: 'Anand Hegde',
+    pricePerBw: 2.0,
+    pricePerColor: 5.0,
+    printerModel: 'Xerox AltaLink C8170 Multifunction',
+    phone: '+91 98453 54321',
+    isOnline: true,
   },
 ];
 
@@ -58,7 +122,7 @@ export const mockRecentPrints: RecentPrintItem[] = [
   {
     id: 'rec-1',
     fileName: 'SBI_Statement_Q3.pdf',
-    shopName: 'QuickPrint Corner',
+    shopName: 'QuickPrint Corner & Xerox',
     timestamp: 'Completed 2h ago',
     status: 'Done',
     pageCount: 3,
@@ -67,8 +131,8 @@ export const mockRecentPrints: RecentPrintItem[] = [
   },
   {
     id: 'rec-2',
-    fileName: 'PAN_Card_Rohan.pdf',
-    shopName: 'PrintExpress Hub',
+    fileName: 'PAN_Card_Tanishq.pdf',
+    shopName: 'CyberPoint Print Lab & Xerox',
     timestamp: 'Yesterday',
     status: 'Access ended',
     pageCount: 1,
@@ -78,7 +142,7 @@ export const mockRecentPrints: RecentPrintItem[] = [
   {
     id: 'rec-3',
     fileName: 'Rent_Agreement_Draft.pdf',
-    shopName: 'Metro Xerox',
+    shopName: 'Metro Xerox & Docs Hub',
     timestamp: '12 Oct',
     status: 'Access ended',
     pageCount: 6,
@@ -88,8 +152,8 @@ export const mockRecentPrints: RecentPrintItem[] = [
 ];
 
 export const userProfile = {
-  name: 'Rohan Sharma',
-  email: 'rohan.sharma@domain.in',
+  name: 'Tanishq Mudaliyar',
+  email: 'tanishq.mudaliyar@domain.in',
   avatar:
     'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
   vaultSecurityLevel: 'Hardware Enclave (Tier 4)',

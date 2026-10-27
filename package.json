@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "test": "npx tsx scripts/test-webhook-verification.ts",
-    "simulate": "npx tsx scripts/simulate-whatsapp.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

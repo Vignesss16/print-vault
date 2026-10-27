@@ -5,7 +5,6 @@ import { PrintVaultProvider, usePrintVault } from '@/context/PrintVaultContext';
 import { Header } from '@/components/common/Header';
 import { BottomNav } from '@/components/common/BottomNav';
 import { Toast } from '@/components/common/Toast';
-import { ViewModeSwitcher } from '@/components/common/ViewModeSwitcher';
 import { HomeScreen } from '@/components/screens/HomeScreen';
 import { NewPrintJobScreen } from '@/components/screens/NewPrintJobScreen';
 import { ShopLinkQrScreen } from '@/components/screens/ShopLinkQrScreen';
@@ -13,6 +12,10 @@ import { LiveTrackerScreen } from '@/components/screens/LiveTrackerScreen';
 import { VerificationReceiptScreen } from '@/components/screens/VerificationReceiptScreen';
 import { ReceiptsListScreen } from '@/components/screens/ReceiptsListScreen';
 import { ProfileScreen } from '@/components/screens/ProfileScreen';
+import { AuthScreen } from '@/components/screens/AuthScreen';
+import { ChatScreen } from '@/components/screens/ChatScreen';
+import { ShopkeeperAuthScreen } from '@/components/screens/ShopkeeperAuthScreen';
+import { ShopkeeperDashboardScreen } from '@/components/screens/ShopkeeperDashboardScreen';
 import { DesktopWebLayout } from '@/components/desktop/DesktopWebLayout';
 
 function MobileAppFrame() {
@@ -22,6 +25,13 @@ function MobileAppFrame() {
     switch (currentScreen) {
       case 'home':
         return { title: 'PrintVault', subtitle: 'Home', showBack: false };
+      case 'auth':
+        return {
+          title: 'PrintVault',
+          subtitle: 'Sign in',
+          showBack: true,
+          onBack: () => setCurrentScreen('home'),
+        };
       case 'new_job':
         return {
           title: 'New Print Job',
@@ -30,13 +40,13 @@ function MobileAppFrame() {
         };
       case 'shop_qr':
         return {
-          title: 'Shop Link / QR',
+          title: 'Print QR Code',
           showBack: true,
           onBack: () => setCurrentScreen('home'),
         };
       case 'live_tracker':
         return {
-          title: 'Tracker',
+          title: 'Print Status',
           showBack: true,
           onBack: () => setCurrentScreen('home'),
         };
@@ -50,14 +60,35 @@ function MobileAppFrame() {
       case 'receipts_list':
         return {
           title: 'PrintVault',
-          subtitle: 'Audit Archive',
+          subtitle: 'Receipts',
           showBack: true,
           onBack: () => setCurrentScreen('home'),
         };
       case 'profile':
         return {
           title: 'PrintVault',
-          subtitle: 'Profile & Vault',
+          subtitle: 'Profile',
+          showBack: true,
+          onBack: () => setCurrentScreen('home'),
+        };
+      case 'chat':
+        return {
+          title: 'PrintVault',
+          subtitle: 'Chat',
+          showBack: true,
+          onBack: () => setCurrentScreen('home'),
+        };
+      case 'shopkeeper_auth':
+        return {
+          title: 'PrintVault',
+          subtitle: 'Shopkeeper Sign In',
+          showBack: true,
+          onBack: () => setCurrentScreen('home'),
+        };
+      case 'shopkeeper_dashboard':
+        return {
+          title: 'PrintVault',
+          subtitle: 'Shopkeeper Portal',
           showBack: true,
           onBack: () => setCurrentScreen('home'),
         };
@@ -70,6 +101,14 @@ function MobileAppFrame() {
     switch (currentScreen) {
       case 'home':
         return <HomeScreen />;
+      case 'auth':
+        return <AuthScreen />;
+      case 'shopkeeper_auth':
+        return <ShopkeeperAuthScreen />;
+      case 'shopkeeper_dashboard':
+        return <ShopkeeperDashboardScreen />;
+      case 'chat':
+        return <ChatScreen />;
       case 'new_job':
         return <NewPrintJobScreen />;
       case 'shop_qr':
@@ -111,9 +150,6 @@ function MainAppShell() {
 
   return (
     <>
-      {/* View Mode Switcher Pill */}
-      <ViewModeSwitcher />
-
       {/* Global Floating Toast */}
       <Toast />
 

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><title>PrintVault</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-fixed": "#e4e1eb", "error-container": "#ffdad6", "surface-tint": "#403ff6", "on-surface-variant": "#454556", "secondary-fixed-dim": "#c8c5cf", "on-tertiary-fixed": "#1b1a2c", "secondary-container": "#e1dee8", "surface-bright": "#fbf9f5", "primary": "#1e0cde", "surface-dim": "#dbdad6", "on-primary-fixed": "#07006c", "surface-container-low": "#f5f3ef", "tertiary-fixed-dim": "#c7c4dd", "background": "#fbf9f5", "surface-container-high": "#eae8e4", "on-primary-container": "#d1d0ff", "surface-variant": "#e4e2de", "error": "#ba1a1a", "on-secondary-container": "#63626a", "on-secondary-fixed-variant": "#47464e", "inverse-primary": "#c0c1ff", "outline": "#767588", "on-error": "#ffffff", "on-tertiary-fixed-variant": "#464559", "on-tertiary": "#ffffff", "primary-container": "#3d3bf3", "surface": "#fbf9f5", "inverse-surface": "#30312e", "on-error-container": "#93000a", "primary-fixed-dim": "#c0c1ff", "tertiary-container": "#5b596e", "on-primary-fixed-variant": "#2215e0", "on-secondary": "#ffffff", "tertiary": "#434256", "surface-container": "#efeeea", "on-secondary-fixed": "#1b1b22", "on-primary": "#ffffff", "on-background": "#1b1c1a", "on-tertiary-container": "#d5d1ea", "surface-container-lowest": "#ffffff", "secondary": "#5e5d66", "primary-fixed": "#e1e0ff", "inverse-on-surface": "#f2f0ed", "tertiary-fixed": "#e3e0f9", "outline-variant": "#c6c4d9", "surface-container-highest": "#e4e2de", "on-surface": "#1b1c1a" }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }, spacing: { "space-sm": "0.5rem", "space-xl": "1.5rem", "space-md": "1rem", margin: "1.5rem", gutter: "1rem", "space-lg": "1.25rem", "space-xs": "0.25rem" }, fontFamily: { "body-md": ["Inter"], "label-code-sm": ["JetBrains Mono"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], display: ["Plus Jakarta Sans"], "label-code-lg": ["JetBrains Mono"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }], "label-code-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "500" }], "headline-lg-mobile": ["26px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["32px", { lineHeight: "38px", letterSpacing: "-0.025em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "400" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }], display: ["40px", { lineHeight: "48px", letterSpacing: "-0.03em", fontWeight: "700" }], "label-code-lg": ["20px", { lineHeight: "26px", letterSpacing: "0.08em", fontWeight: "600" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; background-color: #fbf9f5; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go Back" class="w-11 h-11 -ml-2 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><img alt="PrintVault Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VHONCrHmk6QLkf4ZlZHvITwROipAFa1yW1EVBq1Og5EjRWAAcNiTv9cYQA54gp4o0r3gz2B99pI2Edti2YHAeepAP_Nrbw55MRKspzUZrkBer6Env6Qzf4sO91_xzCSA7OlOujQLMYq2-PNxxGlBDd6i9f1USV2IUjsBTLqxP7o6dj1N36K9pC9eUjbfWcNxdKqxZFGbZkQCovtoeJZAzKYSkIEHpVVRFRfSwTaNSEP9LagK4x_oeyoiJY"/><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">New Print Job</h1></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlmAy9FC9t0jGZnCs1ZiIRACH2BY7OKi0IoYAbnol4NTDRMeatf6SdSHunquKAwk4le2RGspmjTKhiMhR6o0nbkaEXJmfIEIvbRvmEH6KRIHdCrvcofBTFv4gbVg2UQKXq5mzQoktwSa-1qnQxARqcf8nviTGSjYKnCobF8-2YSGwaFVjEQfv9zDEbO0Z94HeH5hwCdxDqd30Rjp2icZRt8qGndemi3HFd3RvAZCCOv-TS3dNxHi-JXA"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full max-w-[480px] mx-auto px-margin pt-16 pb-safe bg-surface"><div class="flex flex-col w-full pb-28 pt-2">
+<!-- Progress Header -->
+<div class="flex items-center justify-between mb-space-lg px-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-code-sm text-label-code-sm uppercase tracking-wider text-on-surface-variant">Secure Vault Pipeline</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-primary font-semibold bg-primary-fixed px-space-sm py-0.5 rounded-full">Step 1 of 3</span>
+</div>
+<div class="space-y-space-xl">
+<!-- STEP 1: Document Upload Section -->
+<section class="space-y-space-md">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">1. Upload Document</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Encrypted in-transit</span>
+</div>
+<!-- Upload Zone Drop Area -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col items-center justify-center text-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-space-sm">
+<span class="material-symbols-outlined text-[26px]">cloud_upload</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface text-[15px] mb-space-xs">Drop credentials or select source</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Supports PDF, JPG, PNG up to 25 MB</p>
+<!-- Source Chips -->
+<div class="grid grid-cols-3 gap-space-sm w-full pt-space-xs">
+<button class="flex flex-col items-center justify-center gap-1 py-space-sm px-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container transition-all active:scale-95 text-on-surface" type="button">
+<span class="material-symbols-outlined text-[20px] text-tertiary">photo_camera</span>
+<span class="font-body-sm text-body-sm text-xs font-medium">Camera</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 py-space-sm px-space-xs rounded-lg bg-primary-fixed/40 text-on-primary-fixed hover:bg-primary-fixed/60 transition-all active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary">folder_open</span>
+<span class="font-body-sm text-body-sm text-xs font-semibold">Files</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 py-space-sm px-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container transition-all active:scale-95 text-on-surface" type="button">
+<span class="material-symbols-outlined text-[20px] text-tertiary">photo_library</span>
+<span class="font-body-sm text-body-sm text-xs font-medium">Gallery</span>
+</button>
+</div>
+</div>
+<!-- Uploaded Document Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="relative w-14 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 shadow-sm flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-90" data-alt="A macro studio shot of an Indian Government e-Aadhaar document card folded with an official holographic emblem and archival microtext patterns bathed in warm soft diffused light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPKEexAqXIzC3onXrAd0Yp6721CYF33wYQVL2Jlo9jv4qhODVQL_pr0wx4ywGQ4rJ3GheNWKTTSGJPgg5n9HSkue6kUhbfogDra1a0KxqlnecXRiZ0UwgAjYuhRyxauTKVmlFpz8GmJuajGKbVMXoK7fYkKbiAdDUNHGBTGFsG35XoNX0bqyf9I2uZqtcEDb9hMlZVmLfzbBdnOuQBT_4hlMEfBFQlEBu8hVAb0DlE5bFHvKiSOvSVsQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+<span class="absolute bottom-1 right-1 font-label-code-sm text-[9px] text-white font-bold bg-primary-container/90 px-1 rounded">PDF</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-xs">
+<p class="font-body-lg text-body-lg font-semibold text-on-surface truncate">e-Aadhaar_Official.pdf</p>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span>1.4 MB</span>
+<span>•</span>
+<span class="font-label-code-sm text-label-code-sm text-[11px] text-primary">2 Pages</span>
+<span>•</span>
+<span class="text-tertiary">Verified SHA-256</span>
+</p>
+</div>
+<button aria-label="Remove document" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-90 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Aadhaar Privacy Masking Delight Banner -->
+<div class="bg-[#FFF3C4] text-[#443800] rounded-xl p-space-md shadow-sm transition-all">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-[#FFE58A] flex items-center justify-center shrink-0 mt-0.5 text-[#5B4A00]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="flex-1 min-w-0 pr-space-xs">
+<div class="flex items-center gap-1.5">
+<p class="font-headline-sm text-headline-sm text-[13px] font-bold tracking-tight text-[#3B3000]">Smart Privacy Guard</p>
+<span class="font-label-code-sm text-[10px] bg-[#FFE58A] text-[#5B4A00] px-1.5 py-0.5 rounded-full font-semibold">Auto-detected</span>
+</div>
+<p class="font-body-sm text-body-sm text-[12px] text-[#524400] mt-0.5 leading-snug">
+                Mask the first 8 digits of your Aadhaar number before this leaves your phone?
+              </p>
+</div>
+<!-- Custom Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1 select-none">
+<input checked="" class="sr-only peer" id="mask-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-[#D8CA8E] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between bg-white/70 rounded-lg px-space-sm py-1.5 text-[#443800]" id="mask-preview">
+<span class="font-body-sm text-body-sm text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">visibility_off</span>
+              Rendered as:
+            </span>
+<span class="font-label-code-sm text-label-code-sm font-bold tracking-widest text-on-surface">XXXX-XXXX-4892</span>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 2: Print Configuration Options -->
+<section class="space-y-space-md">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">2. Print Specifications</h2>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant font-medium">Standard A4</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg">
+<!-- Copies Counter -->
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Copies</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Single-sided archival sheet</p>
+</div>
+<div class="flex items-center bg-surface-container-low rounded-full p-1 shadow-inner">
+<button aria-label="Decrease copies" class="w-9 h-9 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface hover:bg-surface transition-all active:scale-90 shadow-sm" id="btn-decrement" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-label-code-lg text-label-code-lg px-4 text-on-surface min-w-[36px] text-center" id="copies-count">1</span>
+<button aria-label="Increase copies" class="w-9 h-9 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface hover:bg-surface transition-all active:scale-90 shadow-sm" id="btn-increment" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Color Mode Selector -->
+<div>
+<label class="font-body-lg text-body-lg font-semibold text-on-surface block mb-space-sm">Color Mode</label>
+<div class="grid grid-cols-2 gap-space-sm p-1 bg-surface-container-low rounded-full">
+<button class="mode-pill py-2.5 px-space-md rounded-full font-body-md text-body-md font-semibold transition-all shadow-sm bg-primary-container text-on-primary text-center flex items-center justify-center gap-1.5" id="btn-mode-bw" type="button">
+<span class="material-symbols-outlined text-[16px]">filter_b_and_w</span>
+<span>B&amp;W (₹3)</span>
+</button>
+<button class="mode-pill py-2.5 px-space-md rounded-full font-body-md text-body-md font-semibold transition-all text-on-surface-variant text-center flex items-center justify-center gap-1.5 hover:text-on-surface" id="btn-mode-color" type="button">
+<span class="material-symbols-outlined text-[16px]">palette</span>
+<span>Color (₹10)</span>
+</button>
+</div>
+</div>
+<!-- Paper Specs Meta -->
+<div class="pt-space-xs flex items-center justify-between text-on-surface-variant bg-surface-container-low/60 rounded-xl px-space-md py-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-tertiary">description</span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Paper Stock</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm font-semibold bg-surface-container-lowest text-on-surface px-space-sm py-1 rounded-md shadow-xs">A4 · 75 GSM Bond</span>
+</div>
+</div>
+</section>
+<!-- STEP 3: Print Shop Destination -->
+<section class="space-y-space-md">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">3. Select Print Point</h2>
+<span class="font-body-sm text-body-sm text-primary font-medium">GPS calibrated</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Shop Card 1 (Selected State) -->
+<div class="shop-card relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all cursor-pointer ring-2 ring-primary-container bg-primary-fixed/15" id="shop-card-1" onclick="selectShop(1)">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container overflow-hidden shrink-0 relative mt-0.5">
+<img class="w-full h-full object-cover" data-alt="A modern minimalist boutique print studio counter with high-speed digital laser printers and tidy wooden desks in clean warm morning sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMVv1zLxWQbV4O_Oc_g6jCuM0bpBDL3z5T1DMh1zqXO4ZGa9S7oaz2RKqMIhB2b9__va50b3XrESDypPsiH7t55tBqSzeTa-lw1xxP9FrQYW1__0JWeQEOTvaEJN-UUqgMFRPDRb046xYh4FzCAPvZficEuongEgg-noyy4zYYiXhOqyMz8NT7EPMoo-tN8n2iyXaD-b8OatbSYjgTE7wvBT7mhmdbAZ3nAlWLNWI_k-cr1gjYUfdLfg"/>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-[16px] font-bold text-on-surface">QuickPrint Corner</h3>
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center gap-space-xs mt-0.5">
+<span class="font-label-code-sm text-label-code-sm font-semibold text-primary">120m away</span>
+<span class="text-on-surface-variant text-[11px]">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Station Road</span>
+</div>
+<div class="flex items-center gap-space-xs mt-1.5">
+<span class="inline-flex items-center gap-0.5 bg-surface-container-high px-1.5 py-0.5 rounded text-[11px] font-bold text-on-surface">
+<span class="material-symbols-outlined text-[#E5A000] text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.9
+                  </span>
+<span class="font-body-sm text-body-sm text-[11px] text-on-surface-variant">(340+ jobs today)</span>
+<span class="font-label-code-sm text-[10px] text-tertiary bg-surface-container-low px-1.5 py-0.5 rounded">Ready to pick</span>
+</div>
+</div>
+</div>
+<!-- Radio Indicator -->
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0 text-white mt-1 shadow-xs" id="radio-icon-1">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</div>
+</div>
+<!-- Shop Card 2 -->
+<div class="shop-card relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all cursor-pointer hover:bg-surface-container-low/40" id="shop-card-2" onclick="selectShop(2)">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container overflow-hidden shrink-0 relative mt-0.5">
+<img class="w-full h-full object-cover" data-alt="An organized technology cyber lab storefront in Bangalore with high-grade plotters and secure archival digital print stations in ambient natural studio light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs8uNSgPPAcPnIVwU_mbr6zz4fcrgZ2QkVQvXZ1IM_mn573N1foTDa0UTkuBxN-U8UL40jKL1bqRX1IRSV2LdDI6ihZtn8qcVnT-uogAy6HjudE-A34G2pxOxkyRdppcZUAR7Gz1woRZSCcHePU2AfgmpoHUJ5gkqC2YS1ZnVtOEIBwUxEYExnS7oyRJ7FMDfpTWAwlPJ3g40uexo7C5aJoymTxSrZOeSnZS3657vD0HtHkgdwo8dVHA"/>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-[16px] font-semibold text-on-surface">CyberPoint Print Lab</h3>
+</div>
+<div class="flex items-center gap-space-xs mt-0.5">
+<span class="font-label-code-sm text-label-code-sm font-semibold text-on-surface-variant">450m away</span>
+<span class="text-on-surface-variant text-[11px]">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tech Hub Block C</span>
+</div>
+<div class="flex items-center gap-space-xs mt-1.5">
+<span class="inline-flex items-center gap-0.5 bg-surface-container-high px-1.5 py-0.5 rounded text-[11px] font-bold text-on-surface">
+<span class="material-symbols-outlined text-[#E5A000] text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.8
+                  </span>
+<span class="font-body-sm text-body-sm text-[11px] text-on-surface-variant">(180+ jobs)</span>
+<span class="font-label-code-sm text-[10px] text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded">Low queue</span>
+</div>
+</div>
+</div>
+<!-- Radio Indicator -->
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0 text-transparent mt-1 shadow-xs" id="radio-icon-2">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ephemeral Security Footnote -->
+<div class="flex items-center justify-center gap-space-xs text-on-surface-variant pt-space-xs">
+<span class="material-symbols-outlined text-[16px] text-tertiary">timer_10</span>
+<p class="font-body-sm text-body-sm text-xs">Self-destruct token generated upon link creation</p>
+</div>
+</div>
+<!-- Bottom Floating Execution Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-surface/85 backdrop-blur-xl pb-safe shadow-[0_-8px_24px_rgba(22,22,29,0.06)]">
+<div class="max-w-[480px] mx-auto px-margin py-3 flex items-center gap-space-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-xs text-on-surface-variant leading-none">Job Total</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="price-display">₹6</span>
+<span class="font-label-code-sm text-label-code-sm text-[11px] text-on-surface-variant">incl. tax</span>
+</div>
+</div>
+<button class="flex-1 h-[52px] rounded-full bg-primary-container hover:bg-primary transition-all active:scale-[0.98] shadow-md flex items-center justify-center gap-space-sm text-on-primary font-body-lg text-body-lg font-semibold" id="btn-submit" type="button">
+<span class="material-symbols-outlined text-[20px]">lock_clock</span>
+<span>Create secure link</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  let copies = 1;
+  let isColor = false;
+  let selectedShopId = 1;
+  const unitPriceBW = 3;
+  const unitPriceColor = 10;
+  const pageCount = 2;
+
+  const copiesEl = document.getElementById('copies-count');
+  const priceDisplayEl = document.getElementById('price-display');
+  const btnDec = document.getElementById('btn-decrement');
+  const btnInc = document.getElementById('btn-increment');
+  const btnBw = document.getElementById('btn-mode-bw');
+  const btnColor = document.getElementById('btn-mode-color');
+  const maskToggle = document.getElementById('mask-toggle');
+  const maskPreview = document.getElementById('mask-preview');
+
+  function calculatePrice() {
+    const rate = isColor ? unitPriceColor : unitPriceBW;
+    const total = copies * rate * pageCount;
+    priceDisplayEl.textContent = '₹' + total;
+  }
+
+  btnInc.addEventListener('click', () => {
+    copies++;
+    copiesEl.textContent = copies;
+    calculatePrice();
+  });
+
+  btnDec.addEventListener('click', () => {
+    if (copies > 1) {
+      copies--;
+      copiesEl.textContent = copies;
+      calculatePrice();
+    }
+  });
+
+  btnBw.addEventListener('click', () => {
+    isColor = false;
+    btnBw.className = 'mode-pill py-2.5 px-space-md rounded-full font-body-md text-body-md font-semibold transition-all shadow-sm bg-primary-container text-on-primary text-center flex items-center justify-center gap-1.5';
+    btnColor.className = 'mode-pill py-2.5 px-space-md rounded-full font-body-md text-body-md font-semibold transition-all text-on-surface-variant text-center flex items-center justify-center gap-1.5 hover:text-on-surface';
+    calculatePrice();
+  });
+
+  btnColor.addEventListener('click', () => {
+    isColor = true;
+    btnColor.className = 'mode-pill py-2.5 px-space-md rounded-full font-body-md text-body-md font-semibold transition-all shadow-sm bg-primary-container text-on-primary text-center flex items-center justify-center gap-1.5';
+    btnBw.className = 'mode-pill py-2.5 px-space-md rounded-full font-body-md text-body-md font-semibold transition-all text-on-surface-variant text-center flex items-center justify-center gap-1.5 hover:text-on-surface';
+    calculatePrice();
+  });
+
+  maskToggle.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      maskPreview.classList.remove('hidden');
+    } else {
+      maskPreview.classList.add('hidden');
+    }
+  });
+
+  window.selectShop = function(id) {
+    selectedShopId = id;
+    const card1 = document.getElementById('shop-card-1');
+    const card2 = document.getElementById('shop-card-2');
+    const icon1 = document.getElementById('radio-icon-1');
+    const icon2 = document.getElementById('radio-icon-2');
+
+    if (id === 1) {
+      card1.className = 'shop-card relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all cursor-pointer ring-2 ring-primary-container bg-primary-fixed/15';
+      card2.className = 'shop-card relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all cursor-pointer hover:bg-surface-container-low/40';
+      icon1.className = 'w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0 text-white mt-1 shadow-xs';
+      icon2.className = 'w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0 text-transparent mt-1 shadow-xs';
+    } else {
+      card2.className = 'shop-card relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all cursor-pointer ring-2 ring-primary-container bg-primary-fixed/15';
+      card1.className = 'shop-card relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all cursor-pointer hover:bg-surface-container-low/40';
+      icon2.className = 'w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0 text-white mt-1 shadow-xs';
+      icon1.className = 'w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0 text-transparent mt-1 shadow-xs';
+    }
+  };
+
+  document.getElementById('btn-submit').addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Encrypting &amp; Minting...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Token Ready!</span>';
+    }, 1200);
+  });
+</script></main></body></html>

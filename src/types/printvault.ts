@@ -5,9 +5,39 @@ export type ScreenType =
   | 'live_tracker'
   | 'receipt'
   | 'receipts_list'
-  | 'profile';
+  | 'profile'
+  | 'auth'
+  | 'chat'
+  | 'shopkeeper_auth'
+  | 'shopkeeper_dashboard';
 
 export type ViewMode = 'auto' | 'mobile' | 'desktop';
+
+export type AppRole = 'customer' | 'shopkeeper';
+
+export interface Customer {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+  avatarUrl?: string;
+  vaultTier?: string;
+}
+
+export interface Shopkeeper {
+  id: string;
+  shopId: string;
+  shopName: string;
+  operatorName: string;
+  email: string;
+  phone?: string;
+  printerModel?: string;
+  location: string;
+  avatarUrl?: string;
+  isOnline: boolean;
+  todayJobsCount?: number;
+  todayEarnings?: number;
+}
 
 export type JobStatus =
   | 'draft'
@@ -29,6 +59,57 @@ export interface PrintShop {
   jobsCount: string;
   statusBadge: string;
   image: string;
+  lat: number;
+  lng: number;
+  operatorName?: string;
+  pricePerBw?: number;
+  pricePerColor?: number;
+  printerModel?: string;
+  phone?: string;
+  isOnline?: boolean;
+}
+
+export interface UserLocation {
+  latitude: number;
+  longitude: number;
+  address: string;
+  accuracyMeters?: number;
+}
+
+export type ChatRequestStatus = 'pending' | 'accepted' | 'declined';
+
+export interface ChatDocumentAttachment {
+  fileName: string;
+  fileSize: string;
+  pageCount: number;
+  copies: number;
+  colorMode: ColorMode;
+  isMaskedAadhaar: boolean;
+  token: string;
+  jobId: string;
+  totalPrice: number;
+  note?: string;
+  sentAt: string;
+  expiresInSeconds: number;
+}
+
+export interface ChatMessage {
+  id: string;
+  requestId: string;
+  senderRole: 'customer' | 'shopkeeper' | 'system';
+  senderName: string;
+  text?: string;
+  document?: ChatDocumentAttachment;
+  timestamp: string;
+}
+
+export interface ChatSession {
+  requestId: string;
+  customer: Customer;
+  shop: PrintShop;
+  status: ChatRequestStatus;
+  messages: ChatMessage[];
+  createdAt: string;
 }
 
 export interface PrintJob {
@@ -59,3 +140,4 @@ export interface RecentPrintItem {
   colorMode: ColorMode;
   receiptId?: string;
 }
+

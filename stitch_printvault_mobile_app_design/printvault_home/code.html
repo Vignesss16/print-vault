@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>PrintVault</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-fixed": "#e4e1eb", "error-container": "#ffdad6", "surface-tint": "#403ff6", "on-surface-variant": "#454556", "secondary-fixed-dim": "#c8c5cf", "on-tertiary-fixed": "#1b1a2c", "secondary-container": "#e1dee8", "surface-bright": "#fbf9f5", "primary": "#1e0cde", "surface-dim": "#dbdad6", "on-primary-fixed": "#07006c", "surface-container-low": "#f5f3ef", "tertiary-fixed-dim": "#c7c4dd", "background": "#fbf9f5", "surface-container-high": "#eae8e4", "on-primary-container": "#d1d0ff", "surface-variant": "#e4e2de", "error": "#ba1a1a", "on-secondary-container": "#63626a", "on-secondary-fixed-variant": "#47464e", "inverse-primary": "#c0c1ff", "outline": "#767588", "on-error": "#ffffff", "on-tertiary-fixed-variant": "#464559", "on-tertiary": "#ffffff", "primary-container": "#3d3bf3", "surface": "#fbf9f5", "inverse-surface": "#30312e", "on-error-container": "#93000a", "primary-fixed-dim": "#c0c1ff", "tertiary-container": "#5b596e", "on-primary-fixed-variant": "#2215e0", "on-secondary": "#ffffff", "tertiary": "#434256", "surface-container": "#efeeea", "on-secondary-fixed": "#1b1b22", "on-primary": "#ffffff", "on-background": "#1b1c1a", "on-tertiary-container": "#d5d1ea", "surface-container-lowest": "#ffffff", "secondary": "#5e5d66", "primary-fixed": "#e1e0ff", "inverse-on-surface": "#f2f0ed", "tertiary-fixed": "#e3e0f9", "outline-variant": "#c6c4d9", "surface-container-highest": "#e4e2de", "on-surface": "#1b1c1a" }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }, spacing: { "space-sm": "0.5rem", "space-xl": "1.5rem", "space-md": "1rem", margin: "1.5rem", gutter: "1rem", "space-lg": "1.25rem", "space-xs": "0.25rem" }, fontFamily: { "body-md": ["Inter"], "label-code-sm": ["JetBrains Mono"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], display: ["Plus Jakarta Sans"], "label-code-lg": ["JetBrains Mono"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }], "label-code-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "500" }], "headline-lg-mobile": ["26px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["32px", { lineHeight: "38px", letterSpacing: "-0.025em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "400" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }], display: ["40px", { lineHeight: "48px", letterSpacing: "-0.03em", fontWeight: "700" }], "label-code-lg": ["20px", { lineHeight: "26px", letterSpacing: "0.08em", fontWeight: "600" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; background-color: #fbf9f5; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="PrintVault Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VHONCrHmk6QLkf4ZlZHvITwROipAFa1yW1EVBq1Og5EjRWAAcNiTv9cYQA54gp4o0r3gz2B99pI2Edti2YHAeepAP_Nrbw55MRKspzUZrkBer6Env6Qzf4sO91_xzCSA7OlOujQLMYq2-PNxxGlBDd6i9f1USV2IUjsBTLqxP7o6dj1N36K9pC9eUjbfWcNxdKqxZFGbZkQCovtoeJZAzKYSkIEHpVVRFRfSwTaNSEP9LagK4x_oeyoiJY"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">PrintVault</span><span class="font-label-code-sm text-label-code-sm text-on-surface-variant font-medium">Home</span></div></div><div class="flex items-center gap-space-sm"><a class="relative p-0.5 rounded-full ring-2 ring-primary-container/20 hover:ring-primary-container transition-all" data-path="profile" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlmAy9FC9t0jGZnCs1ZiIRACH2BY7OKi0IoYAbnol4NTDRMeatf6SdSHunquKAwk4le2RGspmjTKhiMhR6o0nbkaEXJmfIEIvbRvmEH6KRIHdCrvcofBTFv4gbVg2UQKXq5mzQoktwSa-1qnQxARqcf8nviTGSjYKnCobF8-2YSGwaFVjEQfv9zDEbO0Z94HeH5hwCdxDqd30Rjp2icZRt8qGndemi3HFd3RvAZCCOv-TS3dNxHi-JXA"/></a></div></div></div></header><main class="flex-1 flex flex-col relative w-full max-w-[480px] mx-auto px-margin pt-16 pb-24 bg-surface"><div class="flex flex-col w-full">
+<div class="pt-4 pb-5 flex flex-col gap-1">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Good morning, Rohan</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Ready to print securely</p>
+</div>
+<section class="w-full relative overflow-hidden rounded-[24px] bg-primary-fixed p-5 shadow-sm text-on-primary-fixed mb-5 transition-all">
+<div class="flex items-center justify-between gap-2 mb-4">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/80 text-primary-container shadow-xs">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-code-sm text-label-code-sm font-semibold tracking-wide">1 active print job</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 text-on-surface-variant font-label-code-sm text-label-code-sm shadow-xs">
+<span class="material-symbols-outlined text-[15px] text-primary-container">timer</span>
+<span class="font-medium" id="countdown-timer">09:42 left</span>
+</div>
+</div>
+<div class="flex items-start gap-3.5 mb-5">
+<div class="w-11 h-11 rounded-2xl bg-surface-container-lowest flex items-center justify-center text-primary-container shadow-xs shrink-0">
+<span class="material-symbols-outlined text-[24px]">description</span>
+</div>
+<div class="flex flex-col min-w-0 pr-1">
+<span class="font-headline-sm text-headline-sm text-on-primary-fixed truncate">e-Aadhaar_Masked_2025.pdf</span>
+<div class="flex items-center gap-1.5 text-on-surface-variant mt-0.5">
+<span class="material-symbols-outlined text-[16px] shrink-0 text-primary-container">storefront</span>
+<span class="font-body-sm text-body-sm truncate">QuickPrint Corner (MG Road)</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest/70 rounded-2xl p-3.5 mb-4 flex items-center justify-between backdrop-blur-sm">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">One-Time Token</span>
+<span class="font-label-code-lg text-label-code-lg text-primary-container tracking-widest font-semibold">849 201</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/40"></div>
+<div class="flex flex-col items-end">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Self-Destruct</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">lock_clock</span>
+          Post-render shred
+        </span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="font-body-sm text-body-sm">Zero-store vault</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-body-md text-body-md font-medium shadow-xs hover:bg-surface-bright active:scale-95 transition-all" type="button">
+<span>Track live</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<div class="w-full mb-8">
+<button class="w-full h-[52px] rounded-full bg-primary-container text-on-primary font-body-lg text-body-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">add</span>
+<span>New secure print</span>
+</button>
+</div>
+<section class="w-full flex flex-col gap-3">
+<div class="flex items-center justify-between px-0.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Recent prints</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Archived receipts</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-full p-4 rounded-[20px] bg-surface-container-lowest shadow-sm flex items-center justify-between gap-3 transition-transform active:scale-[0.99]">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md font-medium text-on-surface truncate">SBI_Statement_Q3.pdf</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">QuickPrint Corner · Completed 2h ago</span>
+</div>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-low text-on-surface font-label-code-sm text-label-code-sm font-semibold">Done</span>
+</div>
+</div>
+<div class="w-full p-4 rounded-[20px] bg-surface-container-lowest shadow-sm flex items-center justify-between gap-3 transition-transform active:scale-[0.99]">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md font-medium text-on-surface truncate">PAN_Card_Rohan.pdf</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">PrintExpress Hub · Yesterday</span>
+</div>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm font-medium">Access ended</span>
+</div>
+</div>
+<div class="w-full p-4 rounded-[20px] bg-surface-container-lowest shadow-sm flex items-center justify-between gap-3 transition-transform active:scale-[0.99]">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md font-medium text-on-surface truncate">Rent_Agreement_Draft.pdf</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Metro Xerox · 12 Oct</span>
+</div>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm font-medium">Access ended</span>
+</div>
+</div>
+</div>
+</section>
+<div class="mt-8 mb-2 flex items-center justify-center gap-2 text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-code-sm text-label-code-sm">End-to-end encrypted · Auto memory wipe</span>
+</div>
+</div>
+<script>
+  (function() {
+    let totalSeconds = 9 * 60 + 42;
+    const timerElement = document.getElementById('countdown-timer');
+    if (!timerElement) return;
+
+    setInterval(function() {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        const formatted = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0') + ' left';
+        timerElement.textContent = formatted;
+      } else {
+        timerElement.textContent = 'Expired';
+      }
+    }, 1000);
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(22,22,29,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="max-w-[480px] mx-auto h-16 px-gutter flex items-center justify-around"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[48px] min-h-[48px] gap-0.5 transition-colors text-primary-container font-semibold" data-path="home" href="#"><span class="material-symbols-outlined text-[22px]">shield_with_house</span><span class="font-body-sm text-body-sm">Home</span></a><a class="flex flex-col items-center justify-center min-w-[48px] min-h-[48px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="history" href="#"><span class="material-symbols-outlined text-[22px]">inventory_2</span><span class="font-body-sm text-body-sm">Jobs</span></a><a class="flex flex-col items-center justify-center min-w-[48px] min-h-[48px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="receipt" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-body-sm text-body-sm">Receipts</span></a><a class="flex flex-col items-center justify-center min-w-[48px] min-h-[48px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[22px]">fingerprint</span><span class="font-body-sm text-body-sm">Profile</span></a></div></nav></body></html>
